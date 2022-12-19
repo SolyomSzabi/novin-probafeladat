@@ -1,0 +1,1 @@
+export { IUserService, UserService } from './user/userService';
