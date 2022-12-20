@@ -139,5 +139,5 @@ export default function LoginPage(){
   </DialogContent>
 </Dialog>
 </div>
-  )
+  );
 };

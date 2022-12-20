@@ -27,5 +27,5 @@ export class ItemController {
 
   get router(): Router {
     return this._router;
-  }
-}
+  };
+};

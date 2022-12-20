@@ -26,14 +26,11 @@ export class AuthenticationController {
         this._router.get('/logged-view',
         this.authMiddleware.authenticateJWT,
         async (req,res) => {
-          res.json({message:'OK',isLogged:true})
-        }
-        )
+          res.json({message:'OK',isLogged:true});
+        });
       }
     );
   };
-
-  
 
   get router(): Router {
     return this._router;

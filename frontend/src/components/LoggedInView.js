@@ -10,16 +10,16 @@ export default function LoggedInView({component:Component}){
     const getLoggedInView = async () => {
       try {
         const res = await LoggedView();
-        setIsLoggedIn(res.data.LoggedIn);
+        setIsLoggedIn(res.data.isLogged);
       } catch (error) {
         setIsLoggedIn(false);
-      }
+      };
     };
     getLoggedInView();
   },[]);
 
   if(isLoggedIn === null) {
     return null;
-  }
-  return isLoggedIn ? <Component/>:<Navigate to="/login"/>
-}
+  };
+  return isLoggedIn ? <Component/>:<Navigate to="/login"/>;
+};

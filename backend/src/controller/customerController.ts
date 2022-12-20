@@ -20,7 +20,7 @@ export class CustomerController {
 
     this._router.delete('/customers/:customerID',
       async (req, res) => {
-        const customerID = Number(req.params.customerID);
+        const customerID:number = Number(req.params.customerID);
         const message = await this.customerService.deleteCustomerByID(customerID);
         res.status(message.status === 'OK' ? 200 : 400).json(message.message);
       });

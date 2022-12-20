@@ -1,16 +1,19 @@
 import axios from "axios";
 
 const client = axios.create({
-  baseURL : "http://localhost:8081/api"
+  baseURL: "http://localhost:8081/api"
 });
 
 const getCustomers = () => {
-  console.log("GET Request");
   return client.get("/customers");
-}
+};
 
-const deleteCustomer = customer => {
-  return client.delete(`customers/${customer.customerID}`)
-}
+const createCustomer = customer => {
+  return client.post("/customers", { ...customer });
+};
 
-export {getCustomers,deleteCustomer}
+const deleteCustomer = customerID => {
+  return client.delete(`customers/${customerID}`);
+};
+
+export { getCustomers, deleteCustomer, createCustomer };
