@@ -1,4 +1,3 @@
-import { compareSync } from 'bcrypt';
 import { verify } from 'jsonwebtoken';
 import config from '../config';
 
@@ -35,7 +34,7 @@ export class AuthMiddleware {
       return;
     }
 
-    const isValidPassword = compareSync(req.body.password, user.password!);
+    const isValidPassword = (req.body.password=== user.password!);
 
     if (!isValidPassword) {
       res.status(200).json({

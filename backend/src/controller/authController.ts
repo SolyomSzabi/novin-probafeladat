@@ -3,13 +3,11 @@ import { sign } from 'jsonwebtoken';
 import config from '../config';
 import { Router } from 'express';
 import { AuthMiddleware } from '../middlewares/AuthMiddleware';
-import { IUserService } from '../service';
 
 export class AuthenticationController {
   private readonly _router: Router = Router();
 
   constructor(
-    private userService: IUserService,
     private authMiddleware: AuthMiddleware
   ) {
     this._router.post(
@@ -24,9 +22,18 @@ export class AuthenticationController {
           auth_token: token,
           user: req.user,
         });
+
+        this._router.get('/logged-view',
+        this.authMiddleware.authenticateJWT,
+        async (req,res) => {
+          res.json({message:'OK',isLogged:true})
+        }
+        )
       }
     );
   };
+
+  
 
   get router(): Router {
     return this._router;
