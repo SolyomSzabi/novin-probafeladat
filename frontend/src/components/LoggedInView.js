@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
-import { LoggedInView } from "../services/AuthenticationService";
+import { LoggedView } from "../services/AuthenticationService";
 
 export default function LoggedInView({component:Component}){
   const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -9,7 +9,7 @@ export default function LoggedInView({component:Component}){
   useEffect(()=>{
     const getLoggedInView = async () => {
       try {
-        const res = await LoggedInView();
+        const res = await LoggedView();
         setIsLoggedIn(res.data.LoggedIn);
       } catch (error) {
         setIsLoggedIn(false);

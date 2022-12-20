@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 import {Login} from "../services/AuthenticationService";
 
 export default function LoginPage(){
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [loginFailPopup, setLoginFailPopup] = useState(false);
   const [userName, setUserName] = useState({value:"",hasError:false,touched:false});
   const [password, setPassword] = useState({value:"",hasError:false,touched:false});
@@ -51,6 +51,7 @@ export default function LoginPage(){
       localStorage.removeItem("auth_token");
     } else {
       localStorage.setItem("auth_token", response.data.auth_token);
+      navigate("/");
     };
   };
 
@@ -75,6 +76,11 @@ export default function LoginPage(){
           margin="normal"
           required
           fullWidth
+          name="username"
+          label="Username"
+          type="username"
+          id="username"
+          autoComplete="current-username"
           onChange={userNameChangeHandler}
         />
         <TextField
