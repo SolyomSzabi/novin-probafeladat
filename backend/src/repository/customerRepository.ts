@@ -10,7 +10,7 @@ export interface ICustomerRepostiory {
 
 export class CustomerRepository implements ICustomerRepostiory {
   findAllCustomers(): Promise<Customer[]> {
-    return appDataSource.getRepository(Customer).find();
+    return appDataSource.getRepository(Customer).find({ relations: { items: true } });
   };
 
   async findCustomerByID(customerID: number): Promise<Customer | null> {
@@ -28,6 +28,7 @@ export class CustomerRepository implements ICustomerRepostiory {
   };
 
   async deleteCustomerByID(customerID: number): Promise<boolean> {
+
     if ((await this.findCustomerByID(customerID) === null)) return false;
 
     await appDataSource.createQueryBuilder().delete().from(Customer).where(`customerID = :id`, { id: customerID }).execute();
